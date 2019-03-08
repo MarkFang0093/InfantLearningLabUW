@@ -8,43 +8,12 @@
         <script src="jspsych-6/plugins/jspsych-image-keyboard-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-audio-keyboard-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-html-button-response.js"></script>
-        <script src="jspsych-6/plugins/jspsych-audio-button-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations.js"></script>
 
-
         <link href="jspsych-6/css/jspsych.css" rel="stylesheet" type="text/css"></link>
-
-        <style>
-        /* .container {
-          position: relative;
-        }
-        .bottomright {
-          position: absolute;
-          bottom: 8px;
-          right: 16px;
-          font-size: 18px;
-        }
-        .bottomleft {
-          position: absolute;
-          bottom: 8px;
-          left: 16px;
-          font-size: 18px;
-        }
-        img {
-          width: 375;
-          height: 300;
-          opacity: 1;
-          /* position: absolute;
-          left:0;
-          top:0;
-        } */
-        </style>
     </head>
     <body></body>
     <script>
-
-
-
     /* create timeline */
     var timeline = [];
     var audio = ['audio/apple.wav'];
@@ -52,31 +21,31 @@
     /* define welcome message trial */
     var welcome = {
         type: "html-keyboard-response",
-        stimulus: "<b>Welcome to test page</b>"
+        stimulus: "<b>Image-Audio response test</b>"
     };
     timeline.push(welcome);
     alert('Test begins');
-
     // Sound Testing
     var pre_audio = {
       type: 'html-button-response',
-      stimulus: 'The next page contains audio testing.',
+      stimulus: 'Audio will be played in next step. Please find a quiet enviornment to avoid inturrupting others.',
       choices: ["Continue"]
     }
     timeline.push(pre_audio);
-
     var sound_trial_apple_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/apple.wav',
-      choices: ['<img src="img/3_apple.jpg" title = "133" width="375" height="300" alt = "margin_top">', '<img src="img/1_ball.jpg" title = "133" width="375" height="300" alt="Submit">'],
-                margin_top: ['350px','350px'],
-                margin_bottom: ['0px','0px'],
-                margin_left: ['0px','150px'],
-                margin_right: ['150px','0px'],
+      //choices: ['<img src="img/3_apple.jpg" alt="Submit">', '<img src="img/1_ball.jpg" alt="Submit">'],
+      choices: ['<img src="img/3_apple.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="375" height="300" alt="Submit">'],
+		margin_top: ['350px','350px'],
+		margin_bottom: ['0px','0px'],
+		margin_left: ['0px','150px'],
+		margin_right: ['150px','0px'],
+      //<img src='img/1_cookie.jpg' title = '133' width='375' height='300'>
       prompt:  ''
     }
     timeline.push(sound_trial_apple_1);
-      // type: 'audio-button-response',
+      // type: 'audio-button-response-flexiblelocations',
       // stimulus: 'audio/apple.wav',
       // choices: ['Blue', 'Red'],
       // trial_duration: 5000,
@@ -88,7 +57,6 @@
       // "<p class='small'>Press the <strong>RIGHT IMAGE</strong> for selecting <strong>BALL</strong></p></div>" +
       // "</div>"+
       // "<p>Which one did you hear? (APPLE or BALL)</p>"
-
       // <div id="background-img" class="background-img" ></div>
       //
       // .background-img{
@@ -98,8 +66,6 @@
       //     repeat-x;
       // }
       //'<div style="width: 300px; height: 300px; background-color: #0000ff;"></div><p>Does the color match the word? (Y or N)</p>'
-
-
     // var sound_trial_apple_2 = {
     //   type: "html-button-response",
     //   stimulus:'',
@@ -117,33 +83,24 @@
     //
     // };
     // timeline.push(sound_trial_apple_2);
-
-
-
-
-
-
-
-
-
-
     var pre_audio_2 = {
       type: 'html-button-response',
       stimulus: 'Audio testing for football & cookie.',
       choices: ['Continue']
     }
     timeline.push(pre_audio);
-
     var sound_trial_ball_1 = {
-      type: 'audio-button-response',
+      type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/ball.wav',
       choices: ['<img src="img/1_cookie.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="375" height="300" alt="Submit">'],
+              margin_top: ['350px','350px'],
+              margin_bottom: ['0px','0px'],
+              margin_left: ['0px','150px'],
+              margin_right: ['150px','0px'],
       prompt:   ''
-
       //'<div style="width: 300px; height: 300px; background-color: #0000ff;"></div><p>Does the color match the word? (Y or N)</p>'
     }
     timeline.push(sound_trial_ball_1);
-
     // var sound_trial_ball_2 = {
     //   // type: "html-keyboard-response",
     //   // stimulus:'',
@@ -173,22 +130,22 @@
     //
     // };
     // timeline.push(sound_trial_ball_2);
-
-
     var pre_audio_3 = {
       type: 'html-button-response',
       stimulus: 'Audio testing for logas.',
-      choices: ['img/novel1.jpg']
+      choices: ['Continue']
     }
-
     var sound_trial_loga_1 = {
-      type: 'audio-button-response',
+      type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/loga.wav',
       choices: ['<img src="img/novel1.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/novel2.jpg" title = "133" width="375" height="300" alt="Submit">'],
+              margin_top: ['350px','350px'],
+              margin_bottom: ['0px','0px'],
+              margin_left: ['0px','150px'],
+              margin_right: ['150px','0px'],
       prompt:   ""
     }
     timeline.push(sound_trial_loga_1)
-
     // var sound_trial_loga_2 = {
     //   // type: "html-keyboard-response",
     //   // stimulus:'',
@@ -220,31 +177,24 @@
     //
     // };
     // timeline.push(sound_trial_loga_2);
-
     var debrief_block = {
        type: "html-keyboard-response",
        stimulus: function() {
-
          var trials = jsPsych.data.get().filter({test_part: 'test'});
          var correct_trials = trials.filter({correct: true});
          var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
          var rt = Math.round(correct_trials.select('rt').mean());
-
          return "<p>You responded correctly on "+accuracy+"% of the trials.</p>"+
          "<p>Your average response time was "+rt+"ms.</p>"+
          "<p>Press any key to complete the experiment. Thank you!</p>";
-
        }
      };
      timeline.push(debrief_block);
-
     var test_end = {
         type: "html-keyboard-response",
         stimulus: "<b>The test is finished. Press any key to quit</b>"
     };
     timeline.push(test_end);
-
-
     /* start the experiment */
     jsPsych.init({
       // preload_audio: audio,
@@ -256,13 +206,9 @@
       timeline: [welcome, pre_audio, sound_trial_apple_1, pre_audio_2, sound_trial_ball_1, pre_audio_3, sound_trial_loga_1, debrief_block, test_end],
       on_finish: function() {
         jsPsych.data.displayData();
-        jsPsych.data.get() .localSave('csv', 'mydata.csv');
       }
       // show_preload_progress_bar: false // hide preload progress bar
-
     });
-
-
     </script>
 
 </html>
