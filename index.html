@@ -9,8 +9,36 @@
         <script src="jspsych-6/plugins/jspsych-audio-keyboard-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-html-button-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-audio-button-response.js"></script>
+        <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations.js"></script>
+
 
         <link href="jspsych-6/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+
+        <style>
+        /* .container {
+          position: relative;
+        }
+        .bottomright {
+          position: absolute;
+          bottom: 8px;
+          right: 16px;
+          font-size: 18px;
+        }
+        .bottomleft {
+          position: absolute;
+          bottom: 8px;
+          left: 16px;
+          font-size: 18px;
+        }
+        img {
+          width: 375;
+          height: 300;
+          opacity: 1;
+          /* position: absolute;
+          left:0;
+          top:0;
+        } */
+        </style>
     </head>
     <body></body>
     <script>
@@ -38,14 +66,14 @@
     timeline.push(pre_audio);
 
     var sound_trial_apple_1 = {
-      type: 'audio-button-response',
+      type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/apple.wav',
-      //choices: ['<img src="img/3_apple.jpg" alt="Submit">', '<img src="img/1_ball.jpg" alt="Submit">'],
-      choices: ['<img src="img/3_apple.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="375" height="300" alt="Submit">'],
-
-      //<img src='img/1_cookie.jpg' title = '133' width='375' height='300'>
+      choices: ['<img src="img/3_apple.jpg" title = "133" width="375" height="300" alt = "margin_top">', '<img src="img/1_ball.jpg" title = "133" width="375" height="300" alt="Submit">'],
+                margin_top: ['350px','350px'],
+                margin_bottom: ['0px','0px'],
+                margin_left: ['0px','150px'],
+                margin_right: ['150px','0px'],
       prompt:  ''
-
     }
     timeline.push(sound_trial_apple_1);
       // type: 'audio-button-response',
@@ -228,6 +256,7 @@
       timeline: [welcome, pre_audio, sound_trial_apple_1, pre_audio_2, sound_trial_ball_1, pre_audio_3, sound_trial_loga_1, debrief_block, test_end],
       on_finish: function() {
         jsPsych.data.displayData();
+        jsPsych.data.get() .localSave('csv', 'mydata.csv');
       }
       // show_preload_progress_bar: false // hide preload progress bar
 
