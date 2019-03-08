@@ -8,7 +8,7 @@
         <script src="jspsych-6/plugins/jspsych-image-keyboard-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-audio-keyboard-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-html-button-response.js"></script>
-        <script src="jspsych-6/plugins/jspsych-audio-button-response.js"></script>
+        <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations.js"></script>
 
         <link href="jspsych-6/css/jspsych.css" rel="stylesheet" type="text/css"></link>
     </head>
@@ -38,17 +38,21 @@
     timeline.push(pre_audio);
 
     var sound_trial_apple_1 = {
-      type: 'audio-button-response',
+      type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/apple.wav',
       //choices: ['<img src="img/3_apple.jpg" alt="Submit">', '<img src="img/1_ball.jpg" alt="Submit">'],
       choices: ['<img src="img/3_apple.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="375" height="300" alt="Submit">'],
+		margin_top: ['350px','350px'],
+		margin_bottom: ['0px','0px'],
+		margin_left: ['0px','150px'],
+		margin_right: ['150px','0px'],
 
       //<img src='img/1_cookie.jpg' title = '133' width='375' height='300'>
       prompt:  ''
 
     }
     timeline.push(sound_trial_apple_1);
-      // type: 'audio-button-response',
+      // type: 'audio-button-response-flexiblelocations',
       // stimulus: 'audio/apple.wav',
       // choices: ['Blue', 'Red'],
       // trial_duration: 5000,
@@ -107,7 +111,7 @@
     timeline.push(pre_audio);
 
     var sound_trial_ball_1 = {
-      type: 'audio-button-response',
+      type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/ball.wav',
       choices: ['<img src="img/1_cookie.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="375" height="300" alt="Submit">'],
       prompt:   ''
@@ -154,7 +158,7 @@
     }
 
     var sound_trial_loga_1 = {
-      type: 'audio-button-response',
+      type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/loga.wav',
       choices: ['<img src="img/novel1.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/novel2.jpg" title = "133" width="375" height="300" alt="Submit">'],
       prompt:   ""
