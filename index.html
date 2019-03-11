@@ -9,6 +9,7 @@
         <script src="jspsych-6/plugins/jspsych-audio-keyboard-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-html-button-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations.js"></script>
+        <script src="jspsych-6/plugins/jspsych-fullscreen.js"></script>
 
         <link href="jspsych-6/css/jspsych.css" rel="stylesheet" type="text/css"></link>
     </head>
@@ -19,6 +20,7 @@
     var audio = ['audio/apple.wav'];
     var images = ['img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg']
     /* define welcome message trial */
+
     var welcome = {
         type: "html-button-response",
         stimulus: "<b>Image-Audio response test</b>",
@@ -28,12 +30,19 @@
     timeline.push(welcome);
     alert('Test begins');
     // Sound Testing
+    var fullscreen_trial = {
+      type: 'fullscreen',
+      fullscreen_mode: true
+    }
+    timeline.push(fullscreen_trial)
+
     var pre_audio = {
       type: 'html-button-response',
       stimulus: 'Audio will be played in next step. Please find a quiet enviornment to avoid inturrupting others.',
-      choices: ["Continue"]
+      choices: ["Continue with fullscreen mode"]
     }
     timeline.push(pre_audio);
+
     var sound_trial_apple_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/apple.wav',
@@ -92,6 +101,7 @@
       choices: ['Continue']
     }
     timeline.push(pre_audio);
+
     var sound_trial_ball_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/ball.wav',
@@ -138,6 +148,7 @@
       stimulus: 'Audio testing for logas.',
       choices: ['Continue']
     }
+
     var sound_trial_loga_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/loga.wav',
@@ -195,6 +206,7 @@
        prompt: ""
      };
      timeline.push(debrief_block);
+
     var test_end = {
         type: "html-button-response",
         stimulus: "<b>The test is finished. Press any key to quit</b>",
@@ -202,6 +214,12 @@
         prompt: ""
     };
     timeline.push(test_end);
+
+    var fullscreen_trial_exit = {
+      type: 'fullscreen',
+      fullscreen_mode: false
+    }
+    timeline.push(fullscreen_trial_exit)
     /* start the experiment */
     jsPsych.init({
       // preload_audio: audio,
@@ -210,7 +228,7 @@
       preload_audio: audio,
       preload_images: images,
       //timeline: timeline
-      timeline: [welcome, pre_audio, sound_trial_apple_1, pre_audio_2, sound_trial_ball_1, pre_audio_3, sound_trial_loga_1, debrief_block, test_end],
+      timeline: [welcome, fullscreen_trial, pre_audio, sound_trial_apple_1, pre_audio_2, sound_trial_ball_1, pre_audio_3, sound_trial_loga_1, debrief_block, test_end],
       on_finish: function() {
         jsPsych.data.displayData();
       }
