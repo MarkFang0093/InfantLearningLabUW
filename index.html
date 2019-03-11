@@ -20,8 +20,10 @@
     var images = ['img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg']
     /* define welcome message trial */
     var welcome = {
-        type: "html-keyboard-response",
-        stimulus: "<b>Image-Audio response test</b>"
+        type: "html-button-response",
+        stimulus: "<b>Image-Audio response test</b>",
+        choices: ['Continue'],
+        prompt: ""
     };
     timeline.push(welcome);
     alert('Test begins');
@@ -179,7 +181,7 @@
     // };
     // timeline.push(sound_trial_loga_2);
     var debrief_block = {
-       type: "html-keyboard-response",
+       type: "html-button-response",
        stimulus: function() {
          var trials = jsPsych.data.get().filter({test_part: 'test'});
          var correct_trials = trials.filter({correct: true});
@@ -188,12 +190,16 @@
          return "<p>You responded correctly on "+accuracy+"% of the trials.</p>"+
          "<p>Your average response time was "+rt+"ms.</p>"+
          "<p>Press any key to complete the experiment. Thank you!</p>";
-       }
+       },
+       choices: ['Continue'],
+       prompt: ""
      };
      timeline.push(debrief_block);
     var test_end = {
-        type: "html-keyboard-response",
-        stimulus: "<b>The test is finished. Press any key to quit</b>"
+        type: "html-button-response",
+        stimulus: "<b>The test is finished. Press any key to quit</b>",
+        choices: ['End Test'],
+        prompt: ""
     };
     timeline.push(test_end);
     /* start the experiment */
