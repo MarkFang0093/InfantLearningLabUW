@@ -29,6 +29,43 @@
     };
     timeline.push(welcome);
     alert('Test begins');
+
+
+    //Pre-test parameters
+    /* test trials */
+    // var test_stimuli = [
+    //   { stimulus: "img/blue.png"},
+    //   { stimulus: "img/orange.png"}
+    // ];
+    //
+    // var fixation = {
+    //   type: 'html-keyboard-response',
+    //   stimulus: '<div style="font-size:60px;">+</div>',
+    //   choices: jsPsych.NO_KEYS,
+    //   trial_duration: 1000,
+    // }
+    //
+    // var test = {
+    //   type: "image-keyboard-response",
+    //   stimulus: jsPsych.timelineVariable('stimulus'),
+    //   choices: ['f', 'j']
+    // }
+    //
+    // var test_procedure = {
+    //   timeline: [fixation, test],
+    //   timeline_variables: test_stimuli,
+    //   randomize_order: true,
+    //   repetitions: 5
+    // }
+
+
+
+
+
+
+
+
+
     // Sound Testing
     var fullscreen_trial = {
       type: 'fullscreen',
@@ -36,6 +73,7 @@
     }
     timeline.push(fullscreen_trial)
 
+    //First Trial
     var pre_audio = {
       type: 'html-button-response',
       stimulus: 'Audio will be played in next step. Please find a quiet enviornment to avoid inturrupting others.',
@@ -43,58 +81,24 @@
     }
     timeline.push(pre_audio);
 
+
     var sound_trial_apple_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/apple.wav',
       //choices: ['<img src="img/3_apple.jpg" alt="Submit">', '<img src="img/1_ball.jpg" alt="Submit">'],
       choices: ['<img src="img/3_apple.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="300" height="250" alt="Submit">'],
-		margin_top: ['250px','250px'],
-		margin_bottom: ['0px','0px'],
-		margin_left: ['0px','89px'],
-		margin_right: ['89px','0px'],
+		    margin_top: ['250px','250px'],
+		    margin_bottom: ['0px','0px'],
+		    margin_left: ['0px','89px'],
+		    margin_right: ['89px','0px'],
 
       //<img src='img/1_cookie.jpg' title = '133' width='375' height='300'>
       prompt:  ''
     }
     timeline.push(sound_trial_apple_1);
-      // type: 'audio-button-response-flexiblelocations',
-      // stimulus: 'audio/apple.wav',
-      // choices: ['Blue', 'Red'],
-      // trial_duration: 5000,
-      // prompt: ""
-      // "<div style='float: bottom;'> <img src= 'img/3_apple.jpg' title = '123' width='370' height='300'></img>" +
-      // "<p class='small'>Press the <strong>LEFT IMAGE</strong> for selecting <strong>APPLE</strong></p></div>" +
-      //
-      // "<div class='float: right;'><img src='img/1_ball.jpg' title = '124' width='370' height='300'></img>" +
-      // "<p class='small'>Press the <strong>RIGHT IMAGE</strong> for selecting <strong>BALL</strong></p></div>" +
-      // "</div>"+
-      // "<p>Which one did you hear? (APPLE or BALL)</p>"
-      // <div id="background-img" class="background-img" ></div>
-      //
-      // .background-img{
-      //     background:url('images/bg-img.png');
-      //     width:100%;
-      //     height:698px;
-      //     repeat-x;
-      // }
-      //'<div style="width: 300px; height: 300px; background-color: #0000ff;"></div><p>Does the color match the word? (Y or N)</p>'
-    // var sound_trial_apple_2 = {
-    //   type: "html-button-response",
-    //   stimulus:'',
-    //   choices: ['<img src="img/3_apple.jpg" alt="Submit">', '<img src="img/1_ball.jpg" alt="Submit">'],
-    //   prompt:
-    //       //"<div style='float: left;'><img src='img/3_apple.jpg' title = '123' width='375' height='300'></img>" +
-    //       "<div style='float: left;'>" +
-    //       "<p class='small'>Press the <strong>LEFT IMAGE</strong> for selecting <strong>APPLE</strong></p></div>" +
-    //       //<div style='width: 700px;'>"+
-    //       //"<div class='float: right;'><img src='img/1_ball.jpg' title = '124' width='375' height='300'></img>" +
-    //       "<div style='float: right;'>" +
-    //       "<p class='small'>Press the <strong>RIGHT IMAGE</strong> for selecting <strong>BALL</strong></p></div>" +
-    //       "</div>"+
-    //       "<p>Which one did you hear? (LEFT or right)</p>",
-    //
-    // };
-    // timeline.push(sound_trial_apple_2);
+
+
+    //Second Trial
     var pre_audio_2 = {
       type: 'html-button-response',
       stimulus: 'Audio testing for football & cookie.',
@@ -105,44 +109,17 @@
     var sound_trial_ball_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/ball.wav',
-      choices: ['<img src="img/1_cookie.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="375" height="300" alt="Submit">'],
-              margin_top: ['250px','250px'],
-              margin_bottom: ['0px','0px'],
-              margin_left: ['0px','150px'],
-              margin_right: ['150px','0px'],
+      choices: ['<img src="img/1_cookie.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="300" height="250" alt="Submit">'],
+        margin_top: ['250px','250px'],
+        margin_bottom: ['0px','0px'],
+        margin_left: ['0px','89px'],
+        margin_right: ['89px','0px'],
       prompt:   ''
-      //'<div style="width: 300px; height: 300px; background-color: #0000ff;"></div><p>Does the color match the word? (Y or N)</p>'
     }
     timeline.push(sound_trial_ball_1);
-    // var sound_trial_ball_2 = {
-    //   // type: "html-keyboard-response",
-    //   // stimulus:'',
-    //   // choices: ['f', 'j'],
-    //   // prompt: "<div style='width: 900px;'>"+
-    //   //     "<div style='float: left;'><img src='img/1_cookie.jpg' title = '133' width='375' height='300'></img>" +
-    //   //     "<p class='small'><strong>Press the F key</strong> for selecting <strong>COOKIE</strong></p></div>" +
-    //   //
-    //   //     "<div class='float: right;'><img src='img/1_ball.jpg' title = '143' width='375' height='300'></img>" +
-    //   //     "<p class='small'><strong>Press the J key</strong> for selecting <strong>BALL</strong></p></div>" +
-    //   //     "</div>"+
-    //   //     "<p>Which one did you hear? (F or J)</p>",
-    //
-    //       type: "html-button-response",
-    //       stimulus:'',
-    //       choices: ['<img src="img/1_cookie.jpg" alt="Submit">', '<img src="img/1_ball.jpg" alt="Submit">'],
-    //       prompt:
-    //           //"<div style='float: left;'><img src='img/3_apple.jpg' title = '123' width='375' height='300'></img>" +
-    //           "<div style='float: left;'>" +
-    //           "<p class='small'>Press the <strong>LEFT IMAGE</strong> for selecting <strong>COOKIE</strong></p></div>" +
-    //           //<div style='width: 700px;'>"+
-    //           //"<div class='float: right;'><img src='img/1_ball.jpg' title = '124' width='375' height='300'></img>" +
-    //           "<div style='float: right;'>" +
-    //           "<p class='small'>Press the <strong>RIGHT IMAGE</strong> for selecting <strong>BALL</strong></p></div>" +
-    //           "</div>"+
-    //           "<p>Which one did you hear? (LEFT or right)</p>",
-    //
-    // };
-    // timeline.push(sound_trial_ball_2);
+
+
+    //Third Trial
     var pre_audio_3 = {
       type: 'html-button-response',
       stimulus: 'Audio testing for logas.',
@@ -152,45 +129,17 @@
     var sound_trial_loga_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/loga.wav',
-      choices: ['<img src="img/novel1.jpg" title = "133" width="375" height="300" alt="Submit">', '<img src="img/novel2.jpg" title = "133" width="375" height="300" alt="Submit">'],
-              margin_top: ['350px','350px'],
-              margin_bottom: ['0px','0px'],
-              margin_left: ['1000px','1350px'],
-              margin_right: ['1350px','1000px'],
+      choices: ['<img src="img/novel1.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/novel2.jpg" title = "133" width="300" height="250" alt="Submit">'],
+        margin_top: ['250px','250px'],
+        margin_bottom: ['0px','0px'],
+        margin_left: ['0px','89px'],
+        margin_right: ['89px','0px'],
       prompt:   ""
     }
     timeline.push(sound_trial_loga_1)
-    // var sound_trial_loga_2 = {
-    //   // type: "html-keyboard-response",
-    //   // stimulus:'',
-    //   // choices: ['f', 'j'],
-    //   // prompt: "<div style='width: 900px;'>"+
-    //   //     "<div style='float: left;'><img src='img/novel1.jpg'title = '223' width='375' height='300'></img>" +
-    //   //     "<p class='small'><strong>Press the F key</strong> for selecting <strong>LOGA 1</strong></p></div>" +
-    //   //
-    //   //     "<div class='float: right;'><img src='img/novel2.jpg'title = '323' width='375' height='300'></img>" +
-    //   //     "<p class='small'><strong>Press the J key</strong> for selecting <strong>OTHER</strong></p></div>" +
-    //   //     "</div>"+
-    //   //     "<p>Which one did you hear? (F or J)</p>",
-    //
-    //       type: "html-button-response",
-    //       stimulus:'',
-    //       choices: ['<img src="img/novel1.jpg" alt="Submit">', '<img src="img/novel2.jpg" alt="Submit">'],
-    //       prompt:
-    //           //"<div style='float: left;'><img src='img/3_apple.jpg' title = '123' width='375' height='300'></img>" +
-    //           "<div style='float: left;'>" +
-    //           "<p class='small'>Press the <strong>LEFT IMAGE</strong> for selecting <strong>NOVEL 1</strong></p></div>" +
-    //           //<div style='width: 700px;'>"+
-    //           //"<div class='float: right;'><img src='img/1_ball.jpg' title = '124' width='375' height='300'></img>" +
-    //           "<div style='float: right;'>" +
-    //           "<p class='small'>Press the <strong>RIGHT IMAGE</strong> for selecting <strong>NOVEL 2</strong></p></div>" +
-    //           "</div>"+
-    //           "<p>Which one did you hear? (LEFT or right)</p>",
-    //
-    //
-    //
-    // };
-    // timeline.push(sound_trial_loga_2);
+
+
+    //Statistics
     var debrief_block = {
        type: "html-button-response",
        stimulus: function() {
@@ -207,6 +156,7 @@
      };
      timeline.push(debrief_block);
 
+    //End testing
     var test_end = {
         type: "html-button-response",
         stimulus: "<b>The test is finished. Press any key to quit</b>",
