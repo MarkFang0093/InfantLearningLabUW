@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,15 +9,73 @@
         <script src="jspsych-6/plugins/jspsych-html-button-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations.js"></script>
         <script src="jspsych-6/plugins/jspsych-fullscreen.js"></script>
+        <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations-promptfirst.js"></script>
 
         <link href="jspsych-6/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+        <style>
+        div.absolute {
+          position: absolute;
+          left: 10px;
+          right:0px;
+          top:10px;
+          border: 3px solid #73AD21;
+        }
+        </style>
     </head>
     <body></body>
     <script>
+
+
+
+    // yummy experiment
     /* create timeline */
     var timeline = [];
-    var audio = ['audio/apple.wav'];
-    var images = ['img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg']
+    var audio = ['audio/apple.wav', 'audio/ball.wav', 'audio/loga.wav'];
+    var images = new Array();
+    images = ['img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg', 'img/1_cookie.jpg', 'img/kid.jpg'];
+    //var shuffledImg = jsPsych.randomization.repeat(images, 2, true);
+
+    //var img_sample = jsPsych.randomization.sampleWithReplacement(images, 10);
+    //var nth = Math.floor(Math.random() * images.length);
+    //var randomImage1 = images[nth];
+    //var nth2 Math.floor(Math.random() * images.length);
+    //var randomImage2 = images[nth2];
+
+
+    // function ramdomImg(){
+    //   var img = new Array();
+    //   img[1] = 'img/3_apple.jpg';
+    //   img[2] = 'img/1_ball.jpg';
+    //   img[3] = 'img/novel1.jpg';
+    //   img[4] = 'img/novel2.jpg';
+    //   img[5] = 'img/1_cookie.jpg'
+    //
+    var random_num = Math.floor(Math.random() * images.length);
+    //   document.write("<img src = \"img/" + Math.floor( 1 + Math.random() * 9) + ".png\" />");
+    //
+    // }
+
+
+
+    // var imgMap = new Map();
+    //
+    // var keyString = 'a string',
+    // keyObj = {'img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg', 'img/1_cookie.jpg'},
+    // keyFunc = function() {};
+
+
+
+
+
+// setting the values
+// myMap.set(keyString, "value associated with 'a string'");
+// myMap.set(keyObj, 'value associated with keyObj');
+// myMap.set(keyFunc, 'value associated with keyFunc');
+//
+// myMap.size; // 3
+
+
+
     /* define welcome message trial */
 
     var welcome = {
@@ -29,39 +86,6 @@
     };
     timeline.push(welcome);
     alert('Test begins');
-
-
-    //Pre-test parameters
-    /* test trials */
-    // var test_stimuli = [
-    //   { stimulus: "img/blue.png"},
-    //   { stimulus: "img/orange.png"}
-    // ];
-    //
-    // var fixation = {
-    //   type: 'html-keyboard-response',
-    //   stimulus: '<div style="font-size:60px;">+</div>',
-    //   choices: jsPsych.NO_KEYS,
-    //   trial_duration: 1000,
-    // }
-    //
-    // var test = {
-    //   type: "image-keyboard-response",
-    //   stimulus: jsPsych.timelineVariable('stimulus'),
-    //   choices: ['f', 'j']
-    // }
-    //
-    // var test_procedure = {
-    //   timeline: [fixation, test],
-    //   timeline_variables: test_stimuli,
-    //   randomize_order: true,
-    //   repetitions: 5
-    // }
-
-
-
-
-
 
 
 
@@ -85,8 +109,7 @@
     var sound_trial_apple_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/apple.wav',
-      //choices: ['<img src="img/3_apple.jpg" alt="Submit">', '<img src="img/1_ball.jpg" alt="Submit">'],
-      choices: ['<img src="img/3_apple.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="300" height="250" alt="Submit">'],
+      choices: ['<img src= '+'  "images[1]" '+' title = "133" width="300" height="250">', '<img src="img/1_ball.jpg" title = "133" width="300" height="250" >'],
 		    margin_top: ['250px','250px'],
 		    margin_bottom: ['0px','0px'],
 		    margin_left: ['0px','89px'],
@@ -109,6 +132,7 @@
     var sound_trial_ball_1 = {
       type: 'audio-button-response-flexiblelocations',
       stimulus: 'audio/ball.wav',
+      //choices: ['<img src="img/1_cookie.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="300" height="250" alt="Submit">'],
       choices: ['<img src="img/1_cookie.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/1_ball.jpg" title = "133" width="300" height="250" alt="Submit">'],
         margin_top: ['250px','250px'],
         margin_bottom: ['0px','0px'],
@@ -137,6 +161,42 @@
       prompt:   ""
     }
     timeline.push(sound_trial_loga_1)
+
+
+
+    //Last Trial for showing 3 images
+
+
+
+
+
+    var pre_audio_last = {
+      type: 'html-button-response',
+      stimulus: 'Last audio testing specific pattern.',
+      choices: ['Continue']
+    }
+
+    var sound_trial_last = {
+      type: 'audio-button-response-flexiblelocations-promptfirst',
+      stimulus: 'audio/loga.wav',
+      choices: ['<img src="img/novel1.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/novel2.jpg" title = "133" width="300" height="250" alt="Submit">'],
+        margin_top: ['250px','250px'],
+        margin_bottom: ['0px','0px'],
+        margin_left: ['0px','89px'],
+        margin_right: ['89px','0px'],
+      prompt:   "<div class='relative'>" +
+                    "<img src='img/kid.jpg' title = '133' width='300' height='250'>" +
+                    //"<img style= display: block; position: relative; top:50%; left:50%; margin-top:33px; margin-left:33px; src='img/kid.jpg'/>" +
+                "</div>"
+
+
+    }
+    timeline.push(sound_trial_last)
+
+
+
+
+
 
 
     //Statistics
@@ -178,8 +238,9 @@
       preload_audio: audio,
       preload_images: images,
       //timeline: timeline
-      timeline: [welcome, fullscreen_trial, pre_audio, sound_trial_apple_1, pre_audio_2, sound_trial_ball_1, pre_audio_3, sound_trial_loga_1, debrief_block, test_end],
+      timeline: [welcome, fullscreen_trial, pre_audio, sound_trial_apple_1, pre_audio_2, sound_trial_ball_1, pre_audio_3, sound_trial_loga_1, pre_audio_last,sound_trial_last,   debrief_block, test_end],
       on_finish: function() {
+        data.correct = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
         jsPsych.data.displayData();
       }
       // show_preload_progress_bar: false // hide preload progress bar
