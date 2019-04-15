@@ -54,10 +54,13 @@
     // var data = Papa.parse(csv);
     //document.write(data);
     // Parse local CSV file
-    Papa.parse('trialorder-2/YumME_Order_1.csv', {
-    	complete: function(results) {
+    Papa.parse('https://github.com/MarkFang0093/InfantLearningLabUW/blob/master/trialorder-2/YumME_Order_1.csv', {
+      download: true,
+      dynamicTyping: true,
+      header: true,
+      complete: function(results) {
     		console.log("Finished:", results.data);
-        var data = results.data
+        var data = results.data;
     	}
     });
   //console.table(data);
