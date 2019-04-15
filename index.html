@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="utf-8"/>
 <html>
     <head>
         <title>My experiment</title>
@@ -10,7 +11,8 @@
         <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations.js"></script>
         <script src="jspsych-6/plugins/jspsych-fullscreen.js"></script>
         <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations-promptfirst.js"></script>
-
+        <script src="PapaParse-4.6.0/papaparse.min.js"></script>
+        <!-- <script src="jquery-csv-master"></script> -->
         <link href="jspsych-6/css/jspsych.css" rel="stylesheet" type="text/css"></link>
         <style>
         div.absolute {
@@ -21,10 +23,13 @@
           border: 3px solid #73AD21;
         }
         </style>
+        <!-- <input type="file" id="csv-file" name="files"/>
+
+        <output id="list"></output> -->
     </head>
     <body></body>
-    <script>
 
+<script>
 
 
     // yummy experiment
@@ -34,60 +39,56 @@
     var images = new Array();
     images = ['img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg', 'img/1_cookie.jpg', 'img/kid.jpg'];
     //var shuffledImg = jsPsych.randomization.repeat(images, 2, true);
+    // Check for the various File API support.
 
-    //var img_sample = jsPsych.randomization.sampleWithReplacement(images, 10);
-    //var nth = Math.floor(Math.random() * images.length);
-    //var randomImage1 = images[nth];
-    //var nth2 Math.floor(Math.random() * images.length);
-    //var randomImage2 = images[nth2];
-
-
-    // function ramdomImg(){
-    //   var img = new Array();
-    //   img[1] = 'img/3_apple.jpg';
-    //   img[2] = 'img/1_ball.jpg';
-    //   img[3] = 'img/novel1.jpg';
-    //   img[4] = 'img/novel2.jpg';
-    //   img[5] = 'img/1_cookie.jpg'
-    //
     var random_num = Math.floor(Math.random() * images.length);
-    //   document.write("<img src = \"img/" + Math.floor( 1 + Math.random() * 9) + ".png\" />");
-    //
-    // }
-
-
-
-    // var imgMap = new Map();
-    //
-    // var keyString = 'a string',
-    // keyObj = {'img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg', 'img/1_cookie.jpg'},
-    // keyFunc = function() {};
-
-
-
-
-
-// setting the values
-// myMap.set(keyString, "value associated with 'a string'");
-// myMap.set(keyObj, 'value associated with keyObj');
-// myMap.set(keyFunc, 'value associated with keyFunc');
-//
-// myMap.size; // 3
 
 
 
     /* define welcome message trial */
+    //var csv = './trialorder-2/YumME_Order_1.csv';
+    //var data = CSVToArray(csv);
+  //  var TargetImagetest =
+    //console.table(data);
 
+    // var data = Papa.parse(csv);
+    //document.write(data);
+    // Parse local CSV file
+    Papa.parse('trialorder-2/YumME_Order_1.csv', {
+    	complete: function(results) {
+    		console.log("Finished:", results.data);
+        var data = results.data
+    	}
+    });
+  //console.table(data);
+  // var data;
+  //
+  //   function handleFileSelect(evt) {
+  //     var file = evt.target.files[0];
+  //
+  //     Papa.parse(file, {
+  //       header: true,
+  //       dynamicTyping: true,
+  //       complete: function(results) {
+  //         data = results;
+  //       }
+  //     });
+  //   }
+  //
+  //   $(document).ready(function(){
+  //     $("#csv-file").change(handleFileSelect);
+  //   });
+  //
     var welcome = {
         type: "html-button-response",
-        stimulus: "<b>Image-Audio response test</b>",
+        stimulus: "<b>Image-Audio response test, loading images</b>",
         choices: ['Continue'],
         prompt: ""
     };
     timeline.push(welcome);
-    alert('Test begins');
 
 
+    //User Input
 
 
     // Sound Testing
