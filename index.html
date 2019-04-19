@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<meta charset="utf-8"/>
 <html>
     <head>
         <title>My experiment</title>
+        <meta charset="utf-8"/>
+
         <script src="jspsych-6/jspsych.js"></script>
         <script src="jspsych-6/plugins/jspsych-html-keyboard-response.js"></script>
         <script src="jspsych-6/plugins/jspsych-image-keyboard-response.js"></script>
@@ -12,6 +13,8 @@
         <script src="jspsych-6/plugins/jspsych-fullscreen.js"></script>
         <script src="jspsych-6/plugins/jspsych-audio-button-response-flexiblelocations-promptfirst.js"></script>
         <script src="PapaParse-4.6.0/papaparse.min.js"></script>
+        <script src="https://d3js.org/d3.v5.js"></script>
+
         <!-- <script src="jquery-csv-master"></script> -->
         <link href="jspsych-6/css/jspsych.css" rel="stylesheet" type="text/css"></link>
         <style>
@@ -43,45 +46,69 @@
 
     var random_num = Math.floor(Math.random() * images.length);
 
+    alert("loading in J3");
+    var datacsv = 'YumME_Order_1.csv';
 
 
-    /* define welcome message trial */
-    //var csv = './trialorder-2/YumME_Order_1.csv';
-    //var data = CSVToArray(csv);
-  //  var TargetImagetest =
-    //console.table(data);
+    d3.csv("YumME_Order_1.csv").then(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i].trialID);
+        console.log(data[i].TargetImage);
 
-    // var data = Papa.parse(csv);
-    //document.write(data);
-    // Parse local CSV file
-    Papa.parse('https://github.com/MarkFang0093/InfantLearningLabUW/blob/master/trialorder-2/YumME_Order_1.csv', {
-      download: true,
-      dynamicTyping: true,
-      header: true,
-      complete: function(results) {
-    		console.log("Finished:", results.data);
-        var data = results.data;
-    	}
+        console.log(data[i].DistracterImage);
+        console.log(data[i].TargetObjectPos);
+        console.log(data[i].DistracterObjectPos);
+      //  d.population = +d.population;
+      //  d["land area"] = +d["land area"];
+      }
+      console.log(data);
+      var trialID = [];
+      var TargetImage = [];
+      var DistracterImage = [];
+      var TargetObjectPos = [];
+      var DistracterObjectPos = [];
+      data.map(function(d) {
+          trialID.push(d.trialID);
+          TargetImage.push(d.TargetImage);
+          DistracterImage.push(d.DistracterImage);
+          TargetObjectPos.push(d.TargetObjectPos);
+          DistracterObjectPos.push(d.DistracterObjectPos);
+      });
+      console.log(trialID);
+      console.log(TargetImage);
+      console.log(DistracterImage);
+      console.log(TargetObjectPos);
+      console.log(DistracterObjectPos);
+
     });
-  //console.table(data);
-  // var data;
-  //
-  //   function handleFileSelect(evt) {
-  //     var file = evt.target.files[0];
-  //
-  //     Papa.parse(file, {
-  //       header: true,
-  //       dynamicTyping: true,
-  //       complete: function(results) {
-  //         data = results;
-  //       }
-  //     });
-  //   }
-  //
-  //   $(document).ready(function(){
-  //     $("#csv-file").change(handleFileSelect);
-  //   });
-  //
+
+    var test_stimuli = [
+          { stimulus: "img/blue.png"},
+          { stimulus: "img/orange.png"}
+        ];
+
+        var fixation = {
+          type: 'html-keyboard-response',
+          stimulus: '<div style="font-size:60px;">+</div>',
+          choices: jsPsych.NO_KEYS,
+          trial_duration: 1000,
+        }
+
+        var test = {
+          type: "image-keyboard-response",
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          choices: ['f', 'j']
+        }
+
+        var test_procedure = {
+          timeline: [fixation, test],
+          timeline_variables: test_stimuli,
+          randomize_order: true,
+          repetitions: 5
+        }
+
+
+        
     var welcome = {
         type: "html-button-response",
         stimulus: "<b>Image-Audio response test, loading images</b>",
