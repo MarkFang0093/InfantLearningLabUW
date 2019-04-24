@@ -43,7 +43,7 @@
     images = ['img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg', 'img/1_cookie.jpg', 'img/kid.jpg'];
     //var shuffledImg = jsPsych.randomization.repeat(images, 2, true);
     // Check for the various File API support.
-
+    var imageindex = 0;
     var random_num = Math.floor(Math.random() * images.length);
 
     alert("loading in J3");
@@ -58,6 +58,8 @@
         console.log(data[i].DistracterImage);
         console.log(data[i].TargetObjectPos);
         console.log(data[i].DistracterObjectPos);
+        console.log(data[i].Audio);
+
       //  d.population = +d.population;
       //  d["land area"] = +d["land area"];
       }
@@ -67,46 +69,28 @@
       var DistracterImage = [];
       var TargetObjectPos = [];
       var DistracterObjectPos = [];
+      var Audio = [];
+
       data.map(function(d) {
           trialID.push(d.trialID);
           TargetImage.push(d.TargetImage);
           DistracterImage.push(d.DistracterImage);
           TargetObjectPos.push(d.TargetObjectPos);
           DistracterObjectPos.push(d.DistracterObjectPos);
+          Audio.push(d.Audio);
+
       });
       console.log(trialID);
       console.log(TargetImage);
       console.log(DistracterImage);
       console.log(TargetObjectPos);
       console.log(DistracterObjectPos);
+      console.log(Audio);
+
 
     });
 
-    // var test_stimuli = [
-    //       { stimulus: "img/blue.png"},
-    //       { stimulus: "img/orange.png"}
-    //     ];
-    //
-    //     var fixation = {
-    //       type: 'html-keyboard-response',
-    //       stimulus: '<div style="font-size:60px;">+</div>',
-    //       choices: jsPsych.NO_KEYS,
-    //       trial_duration: 1000,
-    //     }
-    //
-    //     var test = {
-    //       type: "image-keyboard-response",
-    //       stimulus: jsPsych.timelineVariable('stimulus'),
-    //       choices: ['f', 'j']
-    //     }
-    //
-    //     var test_procedure = {
-    //       timeline: [fixation, test],
-    //       timeline_variables: test_stimuli,
-    //       randomize_order: true,
-    //       repetitions: 5
-    //     }
-    //
+
 
 
     var welcome = {
@@ -119,6 +103,7 @@
 
 
     //User Input
+
 
 
     // Sound Testing
@@ -135,6 +120,63 @@
       choices: ["Continue with fullscreen mode"]
     }
     timeline.push(pre_audio);
+
+
+    /* test trials */
+    var test_stimuli = [
+      { stimulus: "img/blue.png"},
+      { stimulus: "img/orange.png"}
+    ];
+
+    var fixation = {
+      type: 'html-keyboard-response' + imageindex,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: jsPsych.NO_KEYS,
+      trial_duration: 1000,
+    }
+
+    var test = {
+      type: "image-keyboard-response",
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      choices: ['f', 'j']
+    }
+
+    var test_procedure = {
+      timeline: [fixation, test],
+      timeline_variables: test_stimuli
+    }
+
+    timeline.push(test_procedure);
+
+
+
+
+    function imageIteration(i,j) {
+        var rotator = document.getElementById('rotator'), //get the element
+            dir = 'stimuli/images/',                              //images folder
+            delayInSeconds = 1,                           //delay in seconds
+            num = 0,                                      //start number
+            len = N;                                      //limit
+        setInterval(function(){                           //interval changer
+            rotator.src = dir + num+'.jpg';               //change picture
+            num = (num === len) ? 0 : ++num;              //reset if last image reached
+        }, delayInSeconds * 50);
+    }());
+
+
+
+    var iteration = {
+      type: 'audio-button-response-flexiblelocations',
+      stimulus: 'audio/loga.wav',
+      choices: ['<img src="img/novel1.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/novel2.jpg" title = "133" width="300" height="250" alt="Submit">'],
+        margin_top: ['250px','250px'],
+        margin_bottom: ['0px','0px'],
+        margin_left: ['0px','89px'],
+        margin_right: ['89px','0px'],
+      prompt:   ""
+    }
+    timeline.push(sound_trial_loga_1)
+
 
 
     var sound_trial_apple_1 = {
