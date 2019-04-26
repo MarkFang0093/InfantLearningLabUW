@@ -43,8 +43,15 @@
     images = ['img/3_apple.jpg', 'img/1_ball.jpg', 'img/novel1.jpg', 'img/novel2.jpg', 'img/1_cookie.jpg', 'img/kid.jpg'];
     //var shuffledImg = jsPsych.randomization.repeat(images, 2, true);
     // Check for the various File API support.
-    var imageindex = 0;
+    var index = 0;
     var random_num = Math.floor(Math.random() * images.length);
+
+    var testID = Array(30);
+    var TargetImage = Array(30);
+    var DistracterImage = Array(30);
+    var TargetObjectPos = Array(30);
+    var DistracterObjectPos = Array(30);
+    var Audio = Array(30);
 
     alert("loading in J3");
     var datacsv = 'YumME_Order_1.csv';
@@ -52,27 +59,25 @@
 
     d3.csv("YumME_Order_1.csv").then(function(data) {
       for (var i = 0; i < data.length; i++) {
-        console.log(data[i].trialID);
-        console.log(data[i].TargetImage);
-
-        console.log(data[i].DistracterImage);
-        console.log(data[i].TargetObjectPos);
-        console.log(data[i].DistracterObjectPos);
-        console.log(data[i].Audio);
+        testID[i]= data[i].trialID;
+        TargetImage[i]= data[i].TargetImage;
+        DistracterImage[i]= data[i].DistracterImage;
+        // console.log(data[i].trialID);
+        // console.log(data[i].TargetImage);
+        //
+        // console.log(data[i].DistracterImage);
+        // console.log(data[i].TargetObjectPos);
+        // console.log(data[i].DistracterObjectPos);
+        // console.log(data[i].Audio);
 
       //  d.population = +d.population;
       //  d["land area"] = +d["land area"];
       }
       console.log(data);
-      var trialID = [];
-      var TargetImage = [];
-      var DistracterImage = [];
-      var TargetObjectPos = [];
-      var DistracterObjectPos = [];
-      var Audio = [];
+
 
       data.map(function(d) {
-          trialID.push(d.trialID);
+          testID.push(d.trialID);
           TargetImage.push(d.TargetImage);
           DistracterImage.push(d.DistracterImage);
           TargetObjectPos.push(d.TargetObjectPos);
@@ -80,16 +85,35 @@
           Audio.push(d.Audio);
 
       });
-      console.log(trialID);
-      console.log(TargetImage);
-      console.log(DistracterImage);
-      console.log(TargetObjectPos);
-      console.log(DistracterObjectPos);
-      console.log(Audio);
+      // console.log(TargetImage);
+      // console.log(DistracterImage);
+      // console.log(TargetObjectPos);
+      // console.log(DistracterObjectPos);
+      // console.log(Audio);
 
 
-    });
 
+
+
+
+
+
+    for (i = 0; i < 30; i++){
+      var sound_trial_blah  = {
+
+        type: 'audio-button-response-flexiblelocations',
+        stimulus: 'audio/apple.wav',
+        choices: ['<img src= "stimuli/images/'+  TargetImage[index] +'.jpg"  title = "" width="300" height="250">', '<img src="stimuli/images/'+  DistracterImage[index] +'.jpg" title = "" width="300" height="250" >'],
+          margin_top: ['250px','250px'],
+          margin_bottom: ['0px','0px'],
+          margin_left: ['0px','89px'],
+          margin_right: ['89px','0px'],
+        prompt:  ''
+      };
+      timeline.push(sound_trial_blah)
+
+      console.log(i);
+    }
 
 
 
@@ -101,10 +125,9 @@
     };
     timeline.push(welcome);
 
-
     //User Input
 
-
+  console.log(TargetImage[0]);
 
     // Sound Testing
     var fullscreen_trial = {
@@ -122,60 +145,33 @@
     timeline.push(pre_audio);
 
 
-    /* test trials */
-    var test_stimuli = [
-      { stimulus: "img/blue.png"},
-      { stimulus: "img/orange.png"}
-    ];
+  
 
-    var fixation = {
-      type: 'html-keyboard-response' + imageindex,
-      stimulus: '<div style="font-size:60px;">+</div>',
-      choices: jsPsych.NO_KEYS,
-      trial_duration: 1000,
-    }
-
-    var test = {
-      type: "image-keyboard-response",
-      stimulus: jsPsych.timelineVariable('stimulus'),
-      choices: ['f', 'j']
-    }
-
-    var test_procedure = {
-      timeline: [fixation, test],
-      timeline_variables: test_stimuli
-    }
-
-    timeline.push(test_procedure);
+    // function imageIteration(i,j) {
+    //     var rotator = document.getElementById('rotator'), //get the element
+    //         dir = 'stimuli/images/',                              //images folder
+    //         delayInSeconds = 5,                           //delay in seconds
+    //         num = 0,                                      //start number
+    //         len = N;                                      //limit
+    //     setInterval(function(){                           //interval changer
+    //         rotator.src = dir + num+'.jpg';               //change picture
+    //         num = (num === len) ? 0 : ++num;              //reset if last image reached
+    //     }, delayInSeconds * 50);
+    // }());
 
 
 
-
-    function imageIteration(i,j) {
-        var rotator = document.getElementById('rotator'), //get the element
-            dir = 'stimuli/images/',                              //images folder
-            delayInSeconds = 1,                           //delay in seconds
-            num = 0,                                      //start number
-            len = N;                                      //limit
-        setInterval(function(){                           //interval changer
-            rotator.src = dir + num+'.jpg';               //change picture
-            num = (num === len) ? 0 : ++num;              //reset if last image reached
-        }, delayInSeconds * 50);
-    }());
-
-
-
-    var iteration = {
-      type: 'audio-button-response-flexiblelocations',
-      stimulus: 'audio/loga.wav',
-      choices: ['<img src="img/novel1.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/novel2.jpg" title = "133" width="300" height="250" alt="Submit">'],
-        margin_top: ['250px','250px'],
-        margin_bottom: ['0px','0px'],
-        margin_left: ['0px','89px'],
-        margin_right: ['89px','0px'],
-      prompt:   ""
-    }
-    timeline.push(sound_trial_loga_1)
+    // var iteration = {
+    //   type: 'audio-button-response-flexiblelocations',
+    //   stimulus: 'audio/loga.wav',
+    //   choices: ['<img src="img/novel1.jpg" title = "133" width="300" height="250" alt="Submit">', '<img src="img/novel2.jpg" title = "133" width="300" height="250" alt="Submit">'],
+    //     margin_top: ['250px','250px'],
+    //     margin_bottom: ['0px','0px'],
+    //     margin_left: ['0px','89px'],
+    //     margin_right: ['89px','0px'],
+    //   prompt:   ""
+    // }
+    // timeline.push(sound_trial_loga_1)
 
 
 
@@ -311,13 +307,15 @@
       preload_audio: audio,
       preload_images: images,
       //timeline: timeline
-      timeline: [welcome, fullscreen_trial, pre_audio, sound_trial_apple_1, pre_audio_2, sound_trial_ball_1, pre_audio_3, sound_trial_loga_1, pre_audio_last,sound_trial_last,   debrief_block, test_end],
+      timeline: [sound_trial_blah, welcome, fullscreen_trial, pre_audio, sound_trial_apple_1, pre_audio_2, sound_trial_ball_1, pre_audio_3, sound_trial_loga_1, pre_audio_last,sound_trial_last,   debrief_block, test_end],
       on_finish: function() {
         data.correct = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
         jsPsych.data.displayData();
       }
       // show_preload_progress_bar: false // hide preload progress bar
     });
+  });
+
     </script>
 
 </html>
