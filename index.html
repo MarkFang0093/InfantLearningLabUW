@@ -53,7 +53,7 @@
     var TargetObjectPos = Array(30);
     var DistracterObjectPos = Array(30);
     var Audio = Array(30);
- document.body.style.backgroundColor = "black"; 
+ document.body.style.backgroundColor = "black";
     alert("loading in D3JS");
 
 
@@ -100,7 +100,28 @@
       // console.log(DistracterObjectPos);
       console.log(Audio);
 
+      var welcome = {
+          type: "html-button-response",
+          stimulus: "<b>Image-Audio response test, loading images</b>",
+          choices: ['Continue'],
+          prompt: ""
+      };
+      timeline.push(welcome);
 
+      // Sound Testing
+      var fullscreen_trial = {
+        type: 'fullscreen',
+        fullscreen_mode: true
+      }
+      timeline.push(fullscreen_trial)
+
+      //First Trial
+      var pre_audio = {
+        type: 'html-button-response',
+        stimulus: 'Audio will be played in next step. Please find a quiet enviornment to avoid inturrupting others.',
+        choices: ["Continue with fullscreen mode"]
+      }
+      timeline.push(pre_audio);
 
 
  // Creating 30 iterations of arrays about images target images and distraction images and so on.
@@ -179,28 +200,7 @@
 
 
 
-    var welcome = {
-        type: "html-button-response",
-        stimulus: "<b>Image-Audio response test, loading images</b>",
-        choices: ['Continue'],
-        prompt: ""
-    };
-    timeline.push(welcome);
 
-    // Sound Testing
-    var fullscreen_trial = {
-      type: 'fullscreen',
-      fullscreen_mode: true
-    }
-    timeline.push(fullscreen_trial)
-
-    //First Trial
-    var pre_audio = {
-      type: 'html-button-response',
-      stimulus: 'Audio will be played in next step. Please find a quiet enviornment to avoid inturrupting others.',
-      choices: ["Continue with fullscreen mode"]
-    }
-    timeline.push(pre_audio);
 
     //
     // var sound_trial_apple_1 = {

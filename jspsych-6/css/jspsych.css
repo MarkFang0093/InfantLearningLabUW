@@ -46,6 +46,7 @@
   font-family: 'Open Sans', 'Arial', sans-serif;
   font-size: 18px;
   line-height: 1.6em;
+  color: #FFF
 }
 
 /* Form elements like input fields and buttons */
@@ -71,13 +72,13 @@
   background-image: none;
   border: 0px solid transparent;
   border-radius: 4px;
-  color: #333;
+  color: #FFF;
   background-color: #000;
   border-color: #ccc;
 }
 
 .jspsych-btn:hover {
-  background-color: #ddd;
+  background-color: #607D8B;
   border-color: #aaa;
 }
 
