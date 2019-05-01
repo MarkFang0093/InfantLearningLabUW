@@ -132,18 +132,37 @@
       console.log(i);
       console.log(TargetImage[i]);
       console.log(DistracterImage[i]);
+      console.log(TargetObjectPos[i]);
+      console.log(DistracterObjectPos[i]);
       console.log(Audio[i]);
-      var sound_trial_blah  = {
-        type: 'audio-button-response-flexiblelocations',
-        stimulus: "stimuli/sounds/" + Audio[i] +".wav",
-        //stimulus: "stimuli/sounds/start.wav",
-        choices: ['<img src= "stimuli/images/'+  TargetImage[i] +'.jpg"  title = "" width="300" height="250">', '<img src="stimuli/images/'+  DistracterImage[i] +'.jpg" title = "" width="300" height="250" >'],
-          margin_top: ['250px','250px'],
-          margin_bottom: ['0px','0px'],
-          margin_left: ['0px','89px'],
-          margin_right: ['89px','0px'],
-        prompt:  ''
-      };
+
+      if(TargetObjectPos[i] == 'bottomLeft'){
+        var sound_trial_blah  = {
+          type: 'audio-button-response-flexiblelocations',
+          stimulus: "stimuli/sounds/" + Audio[i] +".wav",
+          //stimulus: "stimuli/sounds/start.wav",
+          choices: ['<img src= "stimuli/images/'+  TargetImage[i] +'.jpg"  title = "" width="300" height="250">', '<img src="stimuli/images/'+  DistracterImage[i] +'.jpg" title = "" width="300" height="250" >'],
+            margin_top: ['250px','250px'],
+            margin_bottom: ['0px','0px'],
+            margin_left: ['0px','89px'],
+            margin_right: ['89px','0px'],
+          prompt:  ''
+        };
+      }
+      else {
+        var sound_trial_blah  = {
+          type: 'audio-button-response-flexiblelocations',
+          stimulus: "stimuli/sounds/" + Audio[i] +".wav",
+          //stimulus: "stimuli/sounds/start.wav",
+          choices: ['<img src= "stimuli/images/'+  DistracterImage[i] +'.jpg"  title = "" width="300" height="250">', '<img src="stimuli/images/'+ TargetImage[i] +'.jpg" title = "" width="300" height="250" >'],
+            margin_top: ['250px','250px'],
+            margin_bottom: ['0px','0px'],
+            margin_left: ['0px','89px'],
+            margin_right: ['89px','0px'],
+          prompt:  ''
+        };
+      }
+
       timeline.push(sound_trial_blah);
 
 
@@ -319,7 +338,7 @@
         stimulus: "<b>The test is finished. Press any key to quit</b>",
         choices: ['End Test'],
         prompt: ""
-    };
+    }
     timeline.push(test_end);
 
     var fullscreen_trial_exit = {
